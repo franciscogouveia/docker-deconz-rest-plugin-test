@@ -12,7 +12,7 @@ docker build -t my-deconz-image --build-arg DECONZ_VERSION=2.11.05 --build-arg P
 
 Arguments:
 * DECONZ_VERSION - To see available deconz versions, check [this list](http://deconz.dresden-elektronik.de/ubuntu/beta/). If you don't know which are you looking for, it is probably the latest one.
-* PLUGIN_REPOSITORY - The main repository is https://github.com/dresden-elektronik/deconz-rest-plugin.git. If you are testing a fork, just set it to your repository.
+* PLUGIN_REPOSITORY (optional, default: https://github.com/dresden-elektronik/deconz-rest-plugin.git) - If you are testing a fork, just set it to your repository.
 * PLUGIN_GIT_COMMIT - In the repository mentioned in PLUGIN_REPOSITORY, which commit do you want to test? Here is where you put the commit hash.
 
 Once built, you can run it exactly the same way as you would run a [marthoc/deconz](https://github.com/marthoc/docker-deconz) image - just replace the image name with `my-deconz-image`.
