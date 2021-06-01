@@ -1,3 +1,6 @@
+ARG PLUGIN_REPOSITORY=https://github.com/dresden-elektronik/deconz-rest-plugin.git
+ARG PLUGIN_GIT_COMMIT=master
+
 FROM debian:10-slim as compile-plugin
 
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -11,9 +14,8 @@ RUN sh -c "echo 'deb [arch=amd64] http://phoscon.de/apt/deconz \
             /etc/apt/sources.list.d/deconz.list"
 RUN apt-get update && apt-get install -y deconz deconz-dev
 
-# Declare here to cache the previous steps
-ARG PLUGIN_REPOSITORY=https://github.com/dresden-elektronik/deconz-rest-plugin.git
-ARG PLUGIN_GIT_COMMIT=master
+ARG PLUGIN_REPOSITORY
+ARG PLUGIN_GIT_COMMIT
 
 # Get code from repository and compile
 RUN git clone $PLUGIN_REPOSITORY && cd deconz-rest-plugin && git checkout $PLUGIN_GIT_COMMIT && qmake && make -j2
