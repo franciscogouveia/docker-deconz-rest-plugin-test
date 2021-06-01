@@ -7,13 +7,15 @@ This builds the deconz-rest-plugin and injects it into a new [marthoc/deconz](ht
 How to use it (example):
 
 ```
-docker build -t my-deconz-image --build-arg DECONZ_VERSION=2.11.05 --build-arg PLUGIN_REPOSITORY=https://github.com/dresden-elektronik/deconz-rest-plugin.git --build-arg PLUGIN_GIT_COMMIT=8c87fbb012b6c71543a04b3d80982e66e62ed19d .
+# Guarantee we work on latest marthoc/deconz image
+docker pull marthoc/deconz
+# Build new image
+docker build -t my-deconz-image --build-arg PLUGIN_REPOSITORY=https://github.com/dresden-elektronik/deconz-rest-plugin.git --build-arg PLUGIN_GIT_COMMIT=f52b882536358bd7c722a8fa9894d283cbcaa6d5 .
 ```
 
 Arguments:
-* DECONZ_VERSION - To see available deconz versions, check [this list](http://deconz.dresden-elektronik.de/ubuntu/beta/). If you don't know which are you looking for, it is probably the latest one.
 * PLUGIN_REPOSITORY (optional, default: https://github.com/dresden-elektronik/deconz-rest-plugin.git) - If you are testing a fork, just set it to your repository.
-* PLUGIN_GIT_COMMIT - In the repository mentioned in PLUGIN_REPOSITORY, which commit do you want to test? Here is where you put the commit hash.
+* PLUGIN_GIT_COMMIT (optional, default: master) - In the repository mentioned in PLUGIN_REPOSITORY, which commit do you want to test? Here is where you put the commit hash.
 
 Once built, you can run it exactly the same way as you would run a [marthoc/deconz](https://github.com/marthoc/docker-deconz) image - just replace the image name with `my-deconz-image`.
 
@@ -26,7 +28,6 @@ docker run -d \
     -p 443:443 \
     -p 5900:5900 \
     --restart=always \
-    -v /opt/deconz:/root/.local/share/dresden-elektronik/deCONZ \
     --device=/dev/ttyUSB0 \
     -e DECONZ_WEB_PORT=80 \
     -e DECONZ_WS_PORT=443 \
