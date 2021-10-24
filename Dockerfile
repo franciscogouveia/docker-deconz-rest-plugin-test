@@ -6,7 +6,7 @@ FROM debian:10-slim as compile-plugin
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV TERM="xterm"
 
-RUN apt-get update && apt-get install -y git qt5-default libqt5websockets5-dev libqt5serialport5-dev sqlite3 libcap2-bin lsof curl libsqlite3-dev libssl-dev g++ make gnupg2
+RUN apt-get update && apt-get install -y git qt5-default libqt5websockets5-dev libqt5serialport5-dev qtdeclarative5-dev sqlite3 libcap2-bin lsof curl libsqlite3-dev libssl-dev g++ make gnupg2
 
 RUN curl -L http://phoscon.de/apt/deconz.pub.key | apt-key add -
 RUN sh -c "echo 'deb [arch=amd64] http://phoscon.de/apt/deconz \
