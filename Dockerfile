@@ -20,6 +20,6 @@ ARG PLUGIN_GIT_COMMIT
 # Get code from repository and compile
 RUN git clone $PLUGIN_REPOSITORY && cd deconz-rest-plugin && git checkout $PLUGIN_GIT_COMMIT && qmake && make -j2
 
-FROM marthoc/deconz:latest AS final-image
+FROM deconzcommunity/deconz:latest AS final-image
 
 COPY --from=compile-plugin /libde_rest_plugin.so /usr/share/deCONZ/plugins/libde_rest_plugin.so
